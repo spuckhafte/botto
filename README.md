@@ -4,7 +4,8 @@ A discord bot that "guides" you while playing with **Naruto Botto** (quiz-based 
 
 It surfs google or its own database for the questions and tells you the answer.
 
-[Add to server](https://bit.ly/3bGTj51)
+Add **This** bot: [Add to server](https://bit.ly/3bGTj51)<br>
+Add **Naruto Botto**: [Add to server](https://bit.ly/3ddc8Nk)
 
 ## Note
 Answers are either **Organic** (from google search or database) or **Random** (when the bot can't find an anwser).<br>
