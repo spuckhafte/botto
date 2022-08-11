@@ -12,7 +12,7 @@ Answers are either **Organic** (from google search or database) or **Random** (w
 **Organic Answers** can also be wrong, they can be corrected, just contact: `spuckhafte#7109` or `ARGØN#0699`.
 
 ## Working
-Do your missions, `n m`, it will tell you the answer.<br>
+Do your missions as usual with `n m`, it will tell you the answer.<br>
 Browse stored questions:
 1. `!show` / `!s`: all questions stored (page-wise)
 2. `!find-text-what is` / `!f-t-what is`: shows you all the questions that include `what is`
