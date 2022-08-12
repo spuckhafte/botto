@@ -110,7 +110,7 @@ client.on('message', async msg => {
                 setTimeout(async () => {
                     const rxns = msg.reactions.cache.array()
                     if (rxns.length === 0) return;
-                    const found = false;
+                    let found = false;
                     for (let rxn of rxns) {
                         if (parseInt(rxn.count) <= 1) continue;
                         let rxnUsers = rxn.users.cache.array()
