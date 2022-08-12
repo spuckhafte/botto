@@ -17,7 +17,7 @@ search.account(function test(data) {
 })
 
 setTimeout(() => {
-    client.login('OTY0NDc0ODcyOTEyODIyMzIz.GolS_g.Pry14-nQHrWmvC7Qsv10viajBw1Ju5diwwYLDQ')
+    client.login(TOKEN)
 }, 3000)
 
 const client = new Discord.Client();
@@ -84,6 +84,50 @@ client.on('message', async msg => {
         const botMsg = msg.channel.messages.cache.array()[msg.channel.messages.cache.array().length - 1].embeds[0]
 
         if (!botMsg || !botMsg.title) return;
+
+        if (prevMsg == 'n r' && botMsg.title.includes('report info')) {
+            const report = botMsg.description.toLowerCase();
+            const username = botMsg.title.split(' ')[0].substring(0, botMsg.title.split(' ')[0].length - 2);
+            const parsedReport = report.split('you saw a group of ')[1].split(' while wandering around the village')[0];
+            const sent = await prev.reply(`**${parsedReport}**`);
+            setTimeout(async () => {
+                const options = parseReportOption(msg.embeds[0].description);
+                let found = false;
+                for (let word of parsedReport.split(' ')) {
+                    for (let opt in options) {
+                        let option = options[opt]
+                        if (option.includes(word)) {
+                            if (options[0].includes(word) && options[1].includes(word) && options[2].includes(word)) break;
+                            if ((options[0].includes(word) && options[1].includes(word)) || (options[0].includes(word) && options[2].includes(word)) || (options[1].includes(word) && options[2].includes(word))) continue;
+                            found = true;
+                            let nums = { 1: '1️⃣', 2: '2️⃣', 3: '3️⃣' }
+                            await sent.edit(`**Report: **${nums[parseInt(opt) + 1]}`)
+                            break;
+                        }
+                    }
+                    if (found) break;
+                }
+                setTimeout(async () => {
+                    const rxns = msg.reactions.cache.array()
+                    if (rxns.length === 0) return;
+                    const found = false;
+                    for (let rxn of rxns) {
+                        if (parseInt(rxn.count) <= 1) continue;
+                        let rxnUsers = rxn.users.cache.array()
+                        for (let rxnUsr of rxnUsers) {
+                            console.log(rxnUsr.username)
+                            if (rxnUsr.username == username) {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (found) break;
+                    }
+                    if (found) return;
+                    await prev.reply('react **asap**');
+                }, 4000)
+            }, 8000)
+        }
         if (botMsg.length == 0 || prevMsg != 'n m' || !botMsg.title.includes('rank mission')) return;
 
         const question = botMsg.description.split('**')[1];
@@ -278,7 +322,20 @@ function matchOptions(main, others, options) {
     }
 }
 
+let string = `:one: Reporting 4 suspicious individuals in black in the dango shop
+:two: Reporting 3 suspicious individuals in grey by the gate
+:three: Reporting 4 suspicious individuals in grey in the dango shop`
 
+function parseReportOption(string = '') {
+    const options = string.split('\n');
+    const parsed = [];
+    options.forEach(opt => {
+        parsed.push(opt.split(': ')[1]);
+    })
+    return parsed;
+}
+
+parseReportOption(string)
 
 
 function parse(string) {
