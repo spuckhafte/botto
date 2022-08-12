@@ -322,9 +322,9 @@ function matchOptions(main, others, options) {
     }
 }
 
-let string = `:one: Reporting 4 suspicious individuals in black in the dango shop
-:two: Reporting 3 suspicious individuals in grey by the gate
-:three: Reporting 4 suspicious individuals in grey in the dango shop`
+// let string = `:one: Reporting 4 suspicious individuals in black in the dango shop
+// :two: Reporting 3 suspicious individuals in grey by the gate
+// :three: Reporting 4 suspicious individuals in grey in the dango shop`
 
 function parseReportOption(string = '') {
     const options = string.split('\n');
@@ -335,7 +335,7 @@ function parseReportOption(string = '') {
     return parsed;
 }
 
-parseReportOption(string)
+// parseReportOption(string)
 
 
 function parse(string) {
