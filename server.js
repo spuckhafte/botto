@@ -80,14 +80,13 @@ ${JSON.stringify(parsedQnA, true, 2)}\`\`\`
 client.on('message', async msg => {
     if (msg.author.id === '770100332998295572') {
         const prev = msg.channel.messages.cache.array()[msg.channel.messages.cache.array().length - 2]
-        const prevMsg = prev.content.toLowerCase();
         const botMsg = msg.channel.messages.cache.array()[msg.channel.messages.cache.array().length - 1].embeds[0]
 
         if (!botMsg || !botMsg.title) return;
 
-        if (prevMsg == 'n r' && botMsg.title.includes('report info')) {
+        if (botMsg.title.includes('report info')) {
             const report = botMsg.description.toLowerCase();
-            const username = botMsg.title.split(' ')[0].substring(0, botMsg.title.split(' ')[0].length - 2);
+            const username = botMsg.title.split("'s report info")[0];
             const parsedReport = report.split('you saw a group of ')[1].split(' while wandering around the village')[0];
             const sent = await prev.reply(`**${parsedReport}**`);
             setTimeout(async () => {
@@ -115,7 +114,6 @@ client.on('message', async msg => {
                         if (parseInt(rxn.count) <= 1) continue;
                         let rxnUsers = rxn.users.cache.array()
                         for (let rxnUsr of rxnUsers) {
-                            console.log(rxnUsr.username)
                             if (rxnUsr.username == username) {
                                 found = true;
                                 break;
@@ -128,7 +126,7 @@ client.on('message', async msg => {
                 }, 4000)
             }, 8000)
         }
-        if (botMsg.length == 0 || prevMsg != 'n m' || !botMsg.title.includes('rank mission')) return;
+        if (botMsg.length == 0 || !botMsg.title.includes('rank mission')) return;
 
         const question = botMsg.description.split('**')[1];
         const options = parseOptions(botMsg.description);
