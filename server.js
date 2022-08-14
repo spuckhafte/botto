@@ -17,7 +17,7 @@ search.account(function test(data) {
 })
 
 setTimeout(() => {
-    client.login('OTY0NDc0ODcyOTEyODIyMzIz.GKUyu9.2YJmH2S2v8w6mSnhmJO9FoY8G56CLURfnaP3FM')
+    client.login(TOKEN)
 }, 3000)
 
 const client = new Discord.Client();
