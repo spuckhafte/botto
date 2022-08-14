@@ -17,7 +17,7 @@ search.account(function test(data) {
 })
 
 setTimeout(() => {
-    client.login(TOKEN)
+    client.login('OTY0NDc0ODcyOTEyODIyMzIz.GKUyu9.2YJmH2S2v8w6mSnhmJO9FoY8G56CLURfnaP3FM')
 }, 3000)
 
 const client = new Discord.Client();
@@ -81,12 +81,13 @@ client.on('message', async msg => {
     if (msg.author.id === '770100332998295572') {
         const prev = msg.channel.messages.cache.array()[msg.channel.messages.cache.array().length - 2]
         const botMsg = msg.channel.messages.cache.array()[msg.channel.messages.cache.array().length - 1].embeds[0]
+        let username;
 
         if (!botMsg || !botMsg.title) return;
 
         if (botMsg.title.includes('report info')) {
             const report = botMsg.description.toLowerCase();
-            const username = botMsg.title.split("'s report info")[0];
+            username = botMsg.title.split("'s report info")[0];
             const parsedReport = report.split('you saw a group of ')[1].split(' while wandering around the village')[0];
             const sent = await prev.reply(`**${parsedReport}**`);
             setTimeout(async () => {
@@ -142,12 +143,20 @@ client.on('message', async msg => {
             Google(question, async (main, others) => {
                 const [correctOption, type] = matchOptions(main, others, options);
                 console.log(correctOption, type);
-                await prev.reply(`**${type}:** ${correctOption}`)
+                const ansSent = await prev.reply(`**${type}:** ${correctOption}`)
                 const exportQ = {}
                 exportQ[question] = options[parseInt(correctOption) - 1]
                 if (type === 'Organic') {
                     await jdb.assignI('qna', 'ans', exportQ);
                     console.log('stored!')
+                } else {
+                    setTimeout(async () => {
+                        const totalRxns = ansSent.reactions.cache.array().length;
+                        if (totalRxns == 0) return;
+                        await jdb.assignI('qna', 'ans', exportQ);
+                        console.log('random_stored');
+                        await ansSent.edit(`**${type}:** ${correctOption}, *stored random*`);
+                    }, 8000)
                 }
             })
         }
