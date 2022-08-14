@@ -248,7 +248,8 @@ ${JSON.stringify(foundOnes, true, 2)}\`\`\`
         answer = answer.trim().toLowerCase(); questionNo = parseInt(questionNo)
         if (parseInt(questionNo) <= 0 || parseInt(questionNo) > Object.keys(parsedQnA).length) return;
 
-        const question = Object.keys(parsedQnA)[questionNo - 1].substr(3).trim();
+        let question = Object.keys(parsedQnA)[questionNo - 1].substr(3).trim();
+        if (question.startsWith('. ')) question = question.substring(2);
         const exportEdit = {}
         exportEdit[question] = answer;
         await jdb.assignI('qna', 'ans', exportEdit);
