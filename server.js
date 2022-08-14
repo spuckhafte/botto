@@ -47,7 +47,7 @@ client.on('message', async msg => {
     if (msg.content.toLowerCase().startsWith('!edit') || msg.content.toLowerCase().startsWith('!e')) edit(msg, jdb);
 
     if (msg.content.toLowerCase().startsWith('!reqs')) {
-        new serp.GoogleSearch(details.keys[key]).account(data => {
+        new serp.GoogleSearch(details.keys[key]).account(async data => {
             await msg.channel.send(`**Searches Left: ${data.plan_searches_left}**`)
         })
     }
