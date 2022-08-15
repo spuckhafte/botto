@@ -13,7 +13,7 @@ Answers are either **Organic** (from google search or database) or **Random** (w
 
 ## Working
 Do your missions as usual with `n m`, it will tell you the answer.<br>
-Also, it guides you with reports, `n r`
+Also, it guides you with reports, `n r`<br>
 Browse stored questions:
 1. `!show` / `!s`: all questions stored (page-wise)
 2. `!find-text-what is` / `!f-t-what is`: shows you all the questions that include `what is`
