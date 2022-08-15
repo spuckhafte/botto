@@ -10,7 +10,18 @@ module.exports = async (botMsg, prev, Google, jdb) => {
         console.log(storedQnAs[question])
         console.log(options.indexOf(storedQnAs[question].trim()) + 1)
         if (storedQnAs[question].includes('=')) storedQnAs[question] = storedQnAs[question].replace('=', '-')
-        let correct = options.indexOf(storedQnAs[question].trim()) + 1;
+
+        let correct;
+        if (isJson(storedQnAs[question])) {
+            const ansArray = JSON.parse(storedQnAs[question]);
+            for (let ans of ansArray) {
+                if (options.includes(ans.trim())) {
+                    correct = options.indexOf(ans.trim()) + 1;
+                    break;
+                }
+            }
+        } else correct = options.indexOf(storedQnAs[question].trim()) + 1;
+
         await prev.reply(`**Organic:** ${correct}\n*from memory*`);
     } else {
         Google(question, async (main, others) => {
@@ -103,4 +114,13 @@ function parseNumToName(string) {
         else parsedString += char + ' '
     })
     return parsedString.trim();
+}
+
+function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
 }
