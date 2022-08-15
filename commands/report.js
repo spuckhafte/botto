@@ -4,6 +4,7 @@ module.exports = async (botMsg, prev, msg) => {
     const parsedReport = report.split('you saw a group of ')[1].split(' while wandering around the village')[0];
     console.log(parsedReport);
     const important = ['1', '2', '3', '4', '5', 'white', 'black', 'forest', 'dango']
+    const ignore = ['shop']
     const sent = await prev.reply(`**${parsedReport}**`);
     setTimeout(async () => {
         const options = parseReportOption(msg.embeds[0].description);
@@ -14,6 +15,7 @@ module.exports = async (botMsg, prev, msg) => {
             for (let word of option.split(' ')) {
                 if (parsedReport.includes(word)) {
                     if (options[0].includes(word) && options[1].includes(word) && options[2].includes(word) && !important.includes(word)) continue;
+                    if (ignore.includes(word)) continue;
                     if (similar === 1 || similar === 0 || similar === 2) similar = similar + 1;
                     if (similar === 3) {
                         found = true;
