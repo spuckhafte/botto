@@ -1,6 +1,8 @@
+const details = require('../prvt');
+
 module.exports = async (msg, user, jdb) => {
     if (user.bot) return;
-    if (!msg.message || !msg.message.content || !msg.message.content.startsWith('**Page ') || !msg.message.author.bot || !msg.message.author.username.startsWith('botto')) return;
+    if (!msg.message || !msg.message.content || !msg.message.content.startsWith('**Page ') || !msg.message.author.bot || !msg.message.author.id == details.BOT_ID) return;
     let pageNo = parseInt(msg.message.content.split('**Page ')[1].split(':')[0]);
     if (msg.emoji.name == '⏩') pageNo = pageNo + 1;
     if (msg.emoji.name == '⏪') pageNo = pageNo - 1;
