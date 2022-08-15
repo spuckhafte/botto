@@ -13,7 +13,7 @@ module.exports = async (botMsg, prev, Google, jdb) => {
 
         let correct;
         if (storedQnAs[question].includes('%%')) {
-            const ansArray = storedQnAs.split('%%');
+            const ansArray = storedQnAs[question].split('%%');
             for (let ans of ansArray) {
                 if (options.includes(ans.trim())) {
                     correct = options.indexOf(ans.trim()) + 1;

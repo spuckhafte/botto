@@ -3,7 +3,7 @@ module.exports = async (botMsg, prev, msg) => {
     const username = botMsg.title.split("'s report info")[0];
     const parsedReport = report.split('you saw a group of ')[1].split(' while wandering around the village')[0];
     console.log(parsedReport);
-    const important = ['1', '2', '3', '4', '5', 'white', 'black', 'forest', 'dango']
+    const important = ['1', '2', '3', '4', '5', 'white', 'black', 'forest', 'dango', 'gate']
     const ignore = ['shop', 'by']
     const sent = await prev.reply(`**${parsedReport}**`);
     setTimeout(async () => {
