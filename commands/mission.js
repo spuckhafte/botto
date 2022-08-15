@@ -12,8 +12,8 @@ module.exports = async (botMsg, prev, Google, jdb) => {
         if (storedQnAs[question].includes('=')) storedQnAs[question] = storedQnAs[question].replace('=', '-')
 
         let correct;
-        if (isJson(storedQnAs[question])) {
-            const ansArray = JSON.parse(storedQnAs[question]);
+        if (storedQnAs[question].includes('%%')) {
+            const ansArray = storedQnAs.split('%%');
             for (let ans of ansArray) {
                 if (options.includes(ans.trim())) {
                     correct = options.indexOf(ans.trim()) + 1;
@@ -114,13 +114,4 @@ function parseNumToName(string) {
         else parsedString += char + ' '
     })
     return parsedString.trim();
-}
-
-function isJson(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
 }
