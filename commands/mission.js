@@ -110,8 +110,9 @@ function parseNumToName(string) {
     let parsedString = '';
     string.split(' ').forEach(char => {
         let num = parseInt(char);
-        if (!isNaN(num)) parsedString += numToName.toWords(num) + ' '
-        else parsedString += char + ' '
-    })
+        if (!isNaN(num)) parsedString += numToName.toWords(num).includes('-')
+            ? numToName.toWords(num).replace('-', ' ') : numToName.toWords(num) + ' ';
+        else parsedString += char + ' ';
+    });
     return parsedString.trim();
 }
