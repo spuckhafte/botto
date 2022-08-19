@@ -53,11 +53,22 @@ client.on('messageCreate', async msg => {
     }
 
     if (msg.content.toLowerCase().trim() === '!show' || msg.content.toLowerCase().trim() === '!s') show(msg, jdb);
-    if (msg.content.toLowerCase().startsWith('!range-') || msg.content.toLowerCase().startsWith('!r-')) range(msg, jdb);
-    if (msg.content.toLowerCase().startsWith('!find-') || msg.content.toLowerCase().startsWith('!f-')) find(msg, jdb);
-    if (msg.content.toLowerCase().startsWith('!edit-') || msg.content.toLowerCase().startsWith('!e-')) edit(msg, jdb);
-    if (msg.content.toLowerCase().startsWith('!online') || msg.content.toLowerCase().startsWith('!on')) showOnline(msg, Discord.MessageEmbed, jdb);
-    if (msg.content.toLowerCase().startsWith('!hide')) hideOnline(msg, jdb);
+    if (msg.content.toLowerCase().trim().startsWith('!range-') || msg.content.toLowerCase().trim().startsWith('!r-')) range(msg, jdb);
+    if (msg.content.toLowerCase().trim().startsWith('!find-') || msg.content.toLowerCase().trim().startsWith('!f-')) find(msg, jdb);
+    if (msg.content.toLowerCase().trim().startsWith('!edit-') || msg.content.toLowerCase().trim().startsWith('!e-')) edit(msg, jdb);
+    if (msg.content.toLowerCase().trim().startsWith('!online') || msg.content.toLowerCase().trim().startsWith('!on')) showOnline(msg, Discord.MessageEmbed, jdb);
+    if (msg.content.toLowerCase().trim().startsWith('!hide')) hideOnline(msg, jdb);
+
+    if (msg.content.toLowerCase().startsWith('!servers')) {
+        const guilds = [];
+        for (let guild of client.guilds.cache.toJSON()) guilds.push(`**${guild.name}**\n`);
+        const embed = new Discord.MessageEmbed()
+            .setTitle('Servers')
+            .setDescription(guilds.join(''))
+            .setFooter(`Total: ${client.guilds.cache.toJSON().length}`)
+            .setColor('BLUE');
+        msg.channel.send({ embeds: [embed] });
+    };
 
     if (msg.content.toLowerCase().startsWith('!reqs')) {
         new serp.GoogleSearch(details.keys[key]).account(async data => {
