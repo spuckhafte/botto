@@ -67,7 +67,8 @@ client.on('messageCreate', async msg => {
             .setDescription(guilds.join(''))
             .setFooter(`Total: ${client.guilds.cache.toJSON().length}`)
             .setColor('BLUE');
-        msg.channel.send({ embeds: [embed] });
+        if (msg.guild.me.permissions.has('EMBED_LINKS')) msg.channel.send({ embeds: [embed] });
+        else msg.reply('**embed perm missing**');
     };
 
     if (msg.content.toLowerCase().startsWith('!reqs')) {

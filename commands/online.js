@@ -64,7 +64,8 @@ async function showOnline(msg, MessageEmbed, jdb) {
         .setDescription(onlineUsers)
         .setColor('GREEN')
         .setFooter(`Active: ${total}`);
-    msg.channel.send({ embeds: [embed] });
+    if (msg.guild.me.permissions.has('EMBED_LINKS')) msg.channel.send({ embeds: [embed] });
+    else msg.reply('**embed perm missing**');
 }
 
 async function hideOnline(msg, jdb) {
