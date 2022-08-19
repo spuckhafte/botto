@@ -27,7 +27,7 @@ search.account(function test(data) {
 })
 setTimeout(() => {
     client.login(details.TOKEN);
-}, 3000)
+}, 000)
 
 const client = new Discord.Client({
     intents: [

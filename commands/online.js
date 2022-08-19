@@ -19,7 +19,7 @@ async function manageOnline(msg, jdb) {
             }, 60000);
             checkOnlineTimeoutStack[msg.author.id] = [userOfflineTimeout, entry];
         } else {
-            const entry = jdb.getR('user', 'moral', ['userid', msg.author.id])['entry'].toString();
+            const entry = await jdb.getR('user', 'moral', ['userid', msg.author.id])['entry'].toString();
             await jdb.editR('user', entry, {
                 "online": "1"
             });
@@ -62,7 +62,7 @@ async function showOnline(msg, MessageEmbed, jdb) {
 };
 
 async function hideOnline(msg, jdb) {
-    const userData = jdb.getR('user', 'moral', ['userid', msg.author.id]);
+    const userData = await jdb.getR('user', 'moral', ['userid', msg.author.id]);
     if (!userData) return;
     const entry = userData.entry;
     const prevHiddenStatus = userData.hide;

@@ -13,7 +13,7 @@
   "dependencies": {
     "discord.js": "^13.10.2",
     "google-search-results-nodejs": "^2.1.0",
-    "json-db-jdb": "^2.1.1",
+    "json-db-jdb": "^2.1.2",
     "number-to-words": "^1.2.4"
   }
 }
