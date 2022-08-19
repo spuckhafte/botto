@@ -9,7 +9,7 @@ Add **Naruto Botto**: [Add to server](https://bit.ly/3ddc8Nk)
 
 ## Note
 Answers are either **Organic** (from google search or database) or **Random** (when the bot can't find an anwser).<br>
-**Organic Answers** can also be wrong, they can be corrected, just contact: `spuckhafte#7109` or `ARGØN#0699`.
+**Organic Answers** can also be wrong, they can be corrected, just contact: `spuckhafte#7109`.
 
 ## Working
 Do your missions as usual with `n m`, it will tell you the answer.<br>
