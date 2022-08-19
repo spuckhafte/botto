@@ -2,3 +2,4 @@ node_modules
 prvt.js
 server.zip
 server.test.js
+commands/_.js

@@ -1,3 +1,5 @@
+const _ = require("./_");
+
 async function manageOnline(msg, jdb) {
     const checkOnlineTimeoutStack = {};
     const ids = jdb.getEl('user', 'userid');
@@ -49,16 +51,7 @@ async function manageOnline(msg, jdb) {
 
 
 async function showOnline(msg, MessageEmbed, jdb) {
-    let onlineUsers = '';
-    let total = 0;
-    for (let entry = 1; entry < Object.keys(jdb.getEl('user', 'online')).length; entry++) {
-        const userData = jdb.getR('user', 'entry', entry);
-        if (parseInt(userData.online) && !parseInt(userData.hide)) {
-            onlineUsers += `**${userData.username}**\n`;
-            total += 1;
-        }
-    }
-
+    let [onlineUsers, total] = await _(msg, jdb)
     const embed = new MessageEmbed()
         .setTitle('Active Users')
         .setDescription(onlineUsers)
@@ -66,7 +59,7 @@ async function showOnline(msg, MessageEmbed, jdb) {
         .setFooter(`Active: ${total}`);
     if (msg.guild.me.permissions.has('EMBED_LINKS')) msg.channel.send({ embeds: [embed] });
     else msg.reply('**embed perm missing**');
-}
+};
 
 async function hideOnline(msg, jdb) {
     const userData = jdb.getR('user', 'moral', ['userid', msg.author.id]);
