@@ -59,7 +59,7 @@ client.on('messageCreate', async msg => {
     if (msg.content.toLowerCase().trim().startsWith('!online') || msg.content.toLowerCase().trim().startsWith('!on')) showOnline(msg, Discord.MessageEmbed, jdb);
     if (msg.content.toLowerCase().trim().startsWith('!hide')) hideOnline(msg, jdb);
 
-    if (msg.content.toLowerCase().startsWith('!servers') && details.officials.includes(msg.channel.id)) {
+    if (msg.content.toLowerCase().startsWith('!servers') && details.officials.includes(msg.author.id)) {
         const guilds = [];
         for (let guild of client.guilds.cache.toJSON()) guilds.push(`**${guild.name}**\n`);
         const embed = new Discord.MessageEmbed()
