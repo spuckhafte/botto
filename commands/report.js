@@ -28,12 +28,12 @@ module.exports = async (botMsg, prev, msg) => {
             similar = 0;
         }
         setTimeout(async () => {
-            const rxns = msg.reactions.cache.array()
+            const rxns = msg.reactions.cache.toJSON()
             if (rxns.length === 0) return;
             let found = false;
             for (let rxn of rxns) {
                 if (parseInt(rxn.count) <= 1) continue;
-                let rxnUsers = rxn.users.cache.array()
+                let rxnUsers = rxn.users.cache.toJSON()
                 for (let rxnUsr of rxnUsers) {
                     if (rxnUsr.username == username) {
                         found = true;

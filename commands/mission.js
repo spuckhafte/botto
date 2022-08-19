@@ -35,7 +35,7 @@ module.exports = async (botMsg, prev, Google, jdb) => {
                 console.log('stored!')
             } else {
                 setTimeout(async () => {
-                    const totalRxns = ansSent.reactions.cache.array().length;
+                    const totalRxns = ansSent.reactions.cache.toJSON().length;
                     if (totalRxns == 0) return;
                     await jdb.assignI('qna', 'ans', exportQ);
                     console.log('random_stored');

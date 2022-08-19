@@ -10,6 +10,8 @@ const range = require('./commands/range');
 const find = require('./commands/find');
 const edit = require('./commands/edit');
 const turnPage = require('./commands/turnPage');
+const { manageOnline, showOnline, hideOnline } = require('./commands/online');
+const ready = require('./commands/ready');
 
 let search = new serp.GoogleSearch(details.keys[0]);
 let key = 0;
@@ -26,15 +28,24 @@ setTimeout(() => {
     client.login(details.TOKEN);
 }, 3000)
 
-const client = new Discord.Client();
-client.once('ready', () => console.log('Ready'));
+const client = new Discord.Client({
+    intents: [
+        Discord.Intents.FLAGS.GUILDS,
+        Discord.Intents.FLAGS.GUILD_MESSAGES,
+        Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS
+    ]
+})
+client.once('ready', async () => ready(jdb));
 
 client.on('messageReactionAdd', (msg, user) => turnPage(msg, user, jdb));
 client.on('messageReactionRemove', (msg, user) => turnPage(msg, user, jdb));
-client.on('message', async msg => {
+client.on('messageCreate', async msg => {
+    if ((msg.content.toLowerCase().trim() === 'n m' || msg.content.toLowerCase().trim() === 'n mission' || msg.content.toLowerCase().trim() === 'n r' || msg.content.toLowerCase().trim() === 'n report') && !msg.author.bot) {
+        manageOnline(msg, jdb);
+    }
     if (msg.author.id === '770100332998295572') {
-        const prev = msg.channel.messages.cache.array()[msg.channel.messages.cache.array().length - 2];
-        const botMsg = msg.channel.messages.cache.array()[msg.channel.messages.cache.array().length - 1].embeds[0];
+        const prev = msg.channel.messages.cache.toJSON()[msg.channel.messages.cache.toJSON().length - 2];
+        const botMsg = msg.channel.messages.cache.toJSON()[msg.channel.messages.cache.toJSON().length - 1].embeds[0];
         if (!botMsg || !botMsg.title) return;
 
         if (botMsg.title.includes('report info')) report(botMsg, prev, msg);
@@ -42,9 +53,11 @@ client.on('message', async msg => {
     }
 
     if (msg.content.toLowerCase().trim() === '!show' || msg.content.toLowerCase().trim() === '!s') show(msg, jdb);
-    if (msg.content.toLowerCase().startsWith('!range') || msg.content.toLowerCase().startsWith('!r')) range(msg, jdb);
-    if (msg.content.toLowerCase().startsWith('!find') || msg.content.toLowerCase().startsWith('!f')) find(msg, jdb);
-    if (msg.content.toLowerCase().startsWith('!edit') || msg.content.toLowerCase().startsWith('!e')) edit(msg, jdb);
+    if (msg.content.toLowerCase().startsWith('!range-') || msg.content.toLowerCase().startsWith('!r-')) range(msg, jdb);
+    if (msg.content.toLowerCase().startsWith('!find-') || msg.content.toLowerCase().startsWith('!f-')) find(msg, jdb);
+    if (msg.content.toLowerCase().startsWith('!edit-') || msg.content.toLowerCase().startsWith('!e-')) edit(msg, jdb);
+    if (msg.content.toLowerCase().startsWith('!online') || msg.content.toLowerCase().startsWith('!on')) showOnline(msg, Discord.MessageEmbed, jdb);
+    if (msg.content.toLowerCase().startsWith('!hide')) hideOnline(msg, jdb);
 
     if (msg.content.toLowerCase().startsWith('!reqs')) {
         new serp.GoogleSearch(details.keys[key]).account(async data => {
