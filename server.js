@@ -12,6 +12,7 @@ const edit = require('./commands/edit');
 const turnPage = require('./commands/turnPage');
 const { manageOnline, showOnline, hideOnline } = require('./commands/online');
 const ready = require('./commands/ready');
+const help = require('./commands/help');
 
 let search = new serp.GoogleSearch(details.keys[0]);
 let key = 0;
@@ -35,7 +36,7 @@ const client = new Discord.Client({
         Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS
     ]
 })
-client.once('ready', async () => ready(jdb));
+client.once('ready', async () => ready(client, jdb));
 
 client.on('messageReactionAdd', (msg, user) => turnPage(msg, user, jdb));
 client.on('messageReactionRemove', (msg, user) => turnPage(msg, user, jdb));
@@ -58,6 +59,9 @@ client.on('messageCreate', async msg => {
     if (msg.content.toLowerCase().trim().startsWith('!edit-') || msg.content.toLowerCase().trim().startsWith('!e-')) edit(msg, jdb);
     if (msg.content.toLowerCase().trim().startsWith('!online') || msg.content.toLowerCase().trim().startsWith('!on')) showOnline(msg, Discord.MessageEmbed, jdb);
     if (msg.content.toLowerCase().trim().startsWith('!hide')) hideOnline(msg, jdb);
+    if (msg.content.toLowerCase().trim() === '!help' || msg.content.toLowerCase().trim() === '!h' || msg.content.toLowerCase().trim() === '!guide' || msg.content.toLowerCase().trim() === '!g') {
+        help(msg, Discord.MessageManager);
+    }
 
     if (msg.content.toLowerCase().startsWith('!servers') && details.officials.includes(msg.author.id)) {
         const guilds = [];
