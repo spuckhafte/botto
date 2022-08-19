@@ -19,7 +19,7 @@ async function manageOnline(msg, jdb) {
             }, 60000);
             checkOnlineTimeoutStack[msg.author.id] = [userOfflineTimeout, entry];
         } else {
-            const entry = await jdb.getR('user', 'moral', ['userid', msg.author.id])['entry'].toString();
+            const entry = await jdb.getR('user', 'moral', ['userid', msg.author.id])['entry'];
             await jdb.editR('user', entry, {
                 "online": "1"
             });
