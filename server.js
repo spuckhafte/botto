@@ -60,7 +60,7 @@ client.on('messageCreate', async msg => {
     if (msg.content.toLowerCase().trim().startsWith('!online') || msg.content.toLowerCase().trim().startsWith('!on')) showOnline(msg, Discord.MessageEmbed, jdb);
     if (msg.content.toLowerCase().trim().startsWith('!hide')) hideOnline(msg, jdb);
     if (msg.content.toLowerCase().trim() === '!help' || msg.content.toLowerCase().trim() === '!h' || msg.content.toLowerCase().trim() === '!guide' || msg.content.toLowerCase().trim() === '!g') {
-        help(msg, Discord.MessageManager);
+        help(msg, Discord.MessageEmbed);
     }
 
     if (msg.content.toLowerCase().startsWith('!servers') && details.officials.includes(msg.author.id)) {
