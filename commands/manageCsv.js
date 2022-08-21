@@ -54,7 +54,7 @@ async function csvCooldown(msg, jdb) {
     }
     const minutesPassed = (msg.createdTimestamp - parseInt(userData.csv)) / (60 * 1000);
 
-    if (minutesPassed < 5) await msg.reply(`**Csv Cooldown:** \`${Math.floor(minutesPassed)}/6\` min`);
+    if (minutesPassed < 5) await msg.reply(`**Csv Cooldown:** \`${Math.floor(minutesPassed)}/5\` min`);
     else await msg.reply(`**Csv Cooldown:** ✅`);
 }
 
