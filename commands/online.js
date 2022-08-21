@@ -37,7 +37,8 @@ async function manageOnline(msg, jdb) {
             "username": msg.author.username,
             "userid": msg.author.id,
             "online": '1', // 1 -> true, 0 -> false
-            "hide": '0'
+            "hide": '0',
+            "csv": 'n/a'
         });
         const userOfflineTimeout = setTimeout(async () => {
             await jdb.editR('user', entry.toString(), {

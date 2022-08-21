@@ -6,4 +6,7 @@ module.exports = async (client, jdb) => {
             "online": "0"
         })
     };
+    await jdb.assignI('info', 'csv_on', {
+        "current": "0"
+    });
 }

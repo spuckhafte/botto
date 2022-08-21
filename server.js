@@ -13,6 +13,8 @@ const turnPage = require('./commands/turnPage');
 const { manageOnline, showOnline, hideOnline } = require('./commands/online');
 const ready = require('./commands/ready');
 const help = require('./commands/help');
+const csv = require('./commands/csv');
+const manageCsv = require('./commands/manageCsv');
 
 let search = new serp.GoogleSearch(details.keys[0]);
 let key = 0;
@@ -27,13 +29,15 @@ search.account(function test(data) {
 })
 setTimeout(() => {
     client.login(details.TOKEN);
-}, 3000)
+}, 0)
 
 const client = new Discord.Client({
     intents: [
         Discord.Intents.FLAGS.GUILDS,
         Discord.Intents.FLAGS.GUILD_MESSAGES,
-        Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS
+        Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+        Discord.Intents.FLAGS.GUILDS,
+        Discord.Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS
     ]
 })
 client.once('ready', async () => ready(client, jdb));
@@ -41,6 +45,7 @@ client.once('ready', async () => ready(client, jdb));
 client.on('messageReactionAdd', (msg, user) => turnPage(msg, user, jdb));
 client.on('messageReactionRemove', (msg, user) => turnPage(msg, user, jdb));
 client.on('messageCreate', async msg => {
+
     if ((msg.content.toLowerCase().trim() === 'n m' || msg.content.toLowerCase().trim() === 'n mission' || msg.content.toLowerCase().trim() === 'n r' || msg.content.toLowerCase().trim() === 'n report') && !msg.author.bot) {
         manageOnline(msg, jdb);
     }
@@ -59,6 +64,11 @@ client.on('messageCreate', async msg => {
     if (msg.content.toLowerCase().trim().startsWith('!edit-') || msg.content.toLowerCase().trim().startsWith('!e-')) edit(msg, jdb);
     if (msg.content.toLowerCase().trim().startsWith('!online') || msg.content.toLowerCase().trim().startsWith('!on')) showOnline(msg, Discord.MessageEmbed, jdb);
     if (msg.content.toLowerCase().trim().startsWith('!hide')) hideOnline(msg, jdb);
+    if (msg.content.toLowerCase().trim().startsWith('!csv-')) await manageCsv.startCsv(msg, client, csv, jdb);
+    if (msg.content.toLowerCase().trim() == '!cactive' || msg.content.toLowerCase().trim() == '!cact') await manageCsv.activeCsv(msg, jdb);
+    if (msg.content.toLowerCase().trim() == '!csvcd') await manageCsv.csvCooldown(msg, jdb);
+
+
     if (msg.content.toLowerCase().trim() === '!help' || msg.content.toLowerCase().trim() === '!h' || msg.content.toLowerCase().trim() === '!guide' || msg.content.toLowerCase().trim() === '!g') {
         help(msg, Discord.MessageEmbed);
     }
