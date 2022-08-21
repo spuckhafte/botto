@@ -14,8 +14,5 @@ Answers are either **Organic** (from google search or database) or **Random** (w
 ## Working
 Do your missions as usual with `n m`, it will tell you the answer.<br>
 Also, it guides you with reports, `n r`<br>
-Browse stored questions:
-1. `!show` / `!s`: all questions stored (page-wise)
-2. `!find-text-what is` / `!f-t-what is`: shows you all the questions that include `what is`
-3. `!find-index-2` / `!f-i-2`: shows you the questions of serial number (index) `2`
-4. `!range-3-5` / `!r-3-5`: shows you questions from index `2` to `5` (inclusive)
+
+`!h` for more commands
