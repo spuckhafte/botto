@@ -14,5 +14,7 @@ Answers are either **Organic** (from google search or database) or **Random** (w
 ## Working
 Do your missions as usual with `n m`, it will tell you the answer.<br>
 Also, it guides you with reports, `n r`<br>
+Now it can also convert `n list` to a csv file, which can bew viewed as a spreadsheet.<br>
+Also you can view who all in the community are active.<br>
 
-`!h` for more commands
+`!help` for all commands
