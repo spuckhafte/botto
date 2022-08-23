@@ -1,4 +1,4 @@
-module.exports = async (msg, MessageEmbed) => {
+module.exports = async (msg, MessageEmbed, MessageActionRow, MessageButton) => {
     const embed = new MessageEmbed()
         .setTitle('Botto Guide📙')
         .setDescription('Bot will automatically help you with your **missions** and **reports**')
@@ -13,8 +13,26 @@ module.exports = async (msg, MessageEmbed) => {
             { name: '`!cact` **- shows no. of active csv conversions *(max: 5)***', value: 'Alternatives: *cactive*' },
             { name: '`!csvcd` **- shows cooldown for the csv conversion command**', value: 'Alternatives: *none*' },
         );
+
+    const inviteAndUpvote = new MessageActionRow()
+        .addComponents(
+            new MessageButton()
+                .setURL('https://top.gg/bot/964474872912822323/vote')
+                .setLabel('Upvote - Top.gg')
+                .setStyle('LINK'),
+            new MessageButton()
+                .setURL('https://discordbotlist.com/bots/botto-7972/upvote')
+                .setLabel('Upvote - DBL')
+                .setStyle('LINK'),
+            new MessageButton()
+                .setURL('https://bit.ly/botto-invite')
+                .setLabel('Invite')
+                .setStyle('LINK')
+        );
+
     msg.reply({
         embeds: [embed],
+        components: [inviteAndUpvote],
         allowedMentions: {
             repliedUser: false
         }

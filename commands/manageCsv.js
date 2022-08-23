@@ -1,5 +1,6 @@
 async function startCsv(msg, client, csv, jdb) {
     const msgArr = msg.content.toLowerCase().trim().split('-');
+    if (msgArr.length < 3) return;
     if (msgArr.length !== 3) {
         await msg.reply({
             content: 'Invalid: `!csv-START-END` max cards: 20',

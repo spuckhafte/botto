@@ -62,15 +62,15 @@ client.on('messageCreate', async msg => {
     if (msg.content.toLowerCase().trim().startsWith('!range-') || msg.content.toLowerCase().trim().startsWith('!r-')) range(msg, jdb);
     if (msg.content.toLowerCase().trim().startsWith('!find-') || msg.content.toLowerCase().trim().startsWith('!f-')) find(msg, jdb);
     if (msg.content.toLowerCase().trim().startsWith('!edit-') || msg.content.toLowerCase().trim().startsWith('!e-')) edit(msg, jdb);
-    if (msg.content.toLowerCase().trim().startsWith('!online') || msg.content.toLowerCase().trim().startsWith('!on')) showOnline(msg, Discord.MessageEmbed, jdb);
-    if (msg.content.toLowerCase().trim().startsWith('!hide')) hideOnline(msg, jdb);
+    if (msg.content.toLowerCase().trim() == '!online' || msg.content.toLowerCase().trim() == '!on') showOnline(msg, Discord.MessageEmbed, jdb);
+    if (msg.content.toLowerCase().trim() == '!hide') hideOnline(msg, jdb);
     if (msg.content.toLowerCase().trim().startsWith('!csv-')) await manageCsv.startCsv(msg, client, csv, jdb);
     if (msg.content.toLowerCase().trim() == '!cactive' || msg.content.toLowerCase().trim() == '!cact') await manageCsv.activeCsv(msg, jdb);
     if (msg.content.toLowerCase().trim() == '!csvcd') await manageCsv.csvCooldown(msg, jdb);
 
 
     if (msg.content.toLowerCase().trim() === '!help' || msg.content.toLowerCase().trim() === '!h' || msg.content.toLowerCase().trim() === '!guide' || msg.content.toLowerCase().trim() === '!g') {
-        help(msg, Discord.MessageEmbed);
+        help(msg, Discord.MessageEmbed, Discord.MessageActionRow, Discord.MessageButton);
     }
 
     if (msg.content.toLowerCase().startsWith('!servers') && details.officials.includes(msg.author.id)) {
