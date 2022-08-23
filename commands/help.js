@@ -18,15 +18,15 @@ module.exports = async (msg, MessageEmbed, MessageActionRow, MessageButton) => {
         .addComponents(
             new MessageButton()
                 .setURL('https://top.gg/bot/964474872912822323/vote')
-                .setLabel('Upvote - Top.gg')
+                .setLabel('Vote - Top.gg')
                 .setStyle('LINK'),
             new MessageButton()
                 .setURL('https://discordbotlist.com/bots/botto-7972/upvote')
-                .setLabel('Upvote - DBL')
+                .setLabel('Vote - DBL')
                 .setStyle('LINK'),
             new MessageButton()
-                .setURL('https://bit.ly/botto-invite')
-                .setLabel('Invite')
+                .setURL('https://discord.gg/RPz3zbH5vw')
+                .setLabel('Official Server')
                 .setStyle('LINK')
         );
 
