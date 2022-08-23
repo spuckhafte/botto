@@ -9,7 +9,7 @@ module.exports = async (msg, MessageEmbed, MessageActionRow, MessageButton) => {
             { name: '`!on` **- lists all the active users**', value: 'Alternative: *online*' },
             { name: '`!hide` **- hides you from the list of active user, even if you are active**', value: 'Alternative: *none*' },
             { name: '`!h` **- shows you this guide**', value: 'Alternatives: *help*, *g*, *guide*' },
-            { name: '`!csv-{start}-{end}` **- sends you a csv file of *n list***', value: 'Alternatives: *none*' },
+            { name: '`!csv-1-7` **- sends you a csv file of *n list***', value: 'Alternatives: *none*' },
             { name: '`!cact` **- shows no. of active csv conversions *(max: 5)***', value: 'Alternatives: *cactive*' },
             { name: '`!csvcd` **- shows cooldown for the csv conversion command**', value: 'Alternatives: *none*' },
         );
