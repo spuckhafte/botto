@@ -8,6 +8,8 @@ Add **This** bot: [Add to server](https://discord.com/api/oauth2/authorize?clien
 Add **Naruto Botto**: [Add to server](https://bit.ly/3ddc8Nk)<br>
 **Official Server**:  [Join](https://discord.gg/RPz3zbH5vw)
 
+### It violates TOS of "Naruto Botto", make sure to keep it private!
+
 ## Note
 Answers are either **Organic** (from google search or database) or **Random** (when the bot can't find an anwser).<br>
 **Organic Answers** can also be wrong, they can be corrected, just contact: `spuckhafte#7109`.
