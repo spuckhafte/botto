@@ -6,7 +6,7 @@ module.exports = async (botMsg, prev, Google, jdb) => {
 
     const storedQnAs = jdb.getEl('qna', 'ans');
     if (Object.keys(storedQnAs).includes(question)) {
-        console.log(options)
+        console.log(options, 'options')
         console.log(storedQnAs[question])
         console.log(options.indexOf(storedQnAs[question].trim()) + 1)
         if (storedQnAs[question].includes('=')) storedQnAs[question] = storedQnAs[question].replace('=', '-')
@@ -98,8 +98,6 @@ function matchOptions(main, others, options) {
 function parseOptions(query) {
     const option = query.split('\n');
     option.shift();
-    option.pop();
-    option.pop();
     option.forEach((opt, ind) => {
         option[ind] = parseNumToName(opt.split(':')[2].trim().toLowerCase());
     });
