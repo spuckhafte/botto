@@ -46,7 +46,7 @@ client.on('messageReactionAdd', (msg, user) => turnPage(msg, user, jdb));
 client.on('messageReactionRemove', (msg, user) => turnPage(msg, user, jdb));
 client.on('messageCreate', async msg => {
 
-    if ((msg.content.toLowerCase().trim() === 'n m' || msg.content.toLowerCase().trim() === 'n mission' || msg.content.toLowerCase().trim() === 'n r' || msg.content.toLowerCase().trim() === 'n report') && !msg.author.bot) {
+    if ((msg.content.toLowerCase().trim() === '<@770100332998295572> m' || msg.content.toLowerCase().trim() === '<@770100332998295572> mission' || msg.content.toLowerCase().trim() === '<@770100332998295572> r' || msg.content.toLowerCase().trim() === '<@770100332998295572> report') && !msg.author.bot) {
         manageOnline(msg, jdb);
     }
     if (msg.author.id === '770100332998295572') {
