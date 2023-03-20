@@ -40,7 +40,7 @@ module.exports = async (botMsg, prev, Google, jdb) => {
                     await jdb.assignI('qna', 'ans', exportQ);
                     console.log('random_stored');
                     await ansSent.edit(`**${type}:** ${correctOption}, *stored random*`);
-                }, 8000)
+                }, 10000)
             }
         })
     }

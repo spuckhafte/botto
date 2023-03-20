@@ -16,6 +16,8 @@ const help = require('./commands/help');
 const csv = require('./commands/csv');
 const manageCsv = require('./commands/manageCsv');
 
+jdb.Machine.dataEncryption = false;
+
 let search = new serp.GoogleSearch(details.keys[0]);
 let key = 0;
 
@@ -81,6 +83,7 @@ client.on('messageCreate', async msg => {
             .setDescription(guilds.join(''))
             .setFooter(`Total: ${client.guilds.cache.toJSON().length}`)
             .setColor('BLUE');
+        msg.channel.send()
         if (msg.guild.me.permissions.has('EMBED_LINKS')) msg.channel.send({ embeds: [embed] });
         else msg.reply('**embed perm missing**');
     };
